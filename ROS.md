@@ -18,7 +18,7 @@
 # Schedule
 
 |  Date |  Lesson |   Goal|   
-|---|---|---|---|---|
+|
 |  14/04/2020 | Introduction to ROS  | Install ROS
 |  21/04/2020|  Setup Gazebo| Install Gazebo and Turtle Bot   
 |  28/04/2020 | Publisher and Subscribers | Create 1st project in ROS   
