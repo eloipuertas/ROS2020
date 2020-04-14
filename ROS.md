@@ -30,8 +30,7 @@ Now Run your new Ubuntu Virtual Box machine and install the ROS system following
 
 
 # GAZEBO
-* [Install Gazebo 7.x and Integration with ROS](http://gazebosim.org/tutorials?tut=ros_installing&cat=connect_ros)
-	* Install gazebo_ros_pkgs ROS-Kinetic pre-builts  
+* [Install Gazebo 7.x and Integration with ROS using gazebo_ros_pkgs ROS-Kinetic pre-builts  ](http://gazebosim.org/tutorials?tut=ros_installing&cat=connect_ros)
 
 Turtelebo3 Gazebo Package:
 * [Install dependent ROS packages](http://emanual.robotis.com/docs/en/platform/turtlebot3/pc_setup/#install-dependent-ros-1-packages)
