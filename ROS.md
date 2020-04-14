@@ -16,7 +16,7 @@ Now Run your new Ubuntu Virtual Box machine and install the ROS system following
 
 * [ROS Kinetic Kame](http://wiki.ros.org/kinetic/Installation/Ubuntu) 
 	* Chose Desktop-Full Install distribution.
-* [Installing and Configuring ROS Environment](http://wiki.ros.org/ROS/TutorialsInstallingandConfiguringROSEnvironment)
+* [Installing and Configuring ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
 	* Create a ROS Workspace using catkin 
 
 ### Ros Overview
