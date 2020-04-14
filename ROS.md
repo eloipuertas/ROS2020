@@ -24,8 +24,8 @@ Now Run your new Ubuntu Virtual Box machine and install the ROS system following
 * [ROS Overview](http://wiki.ros.org/ROS/Introduction)
 
 # Creating your first project
-* [Create your first Package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage)
-* [Building your first Package] (http://wiki.ros.org/ROS/Tutorials/BuildingPackages)
+* [Create your first Package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage)
+* [Building your first Package](http://wiki.ros.org/ROS/Tutorials/BuildingPackages)
 
 
 
