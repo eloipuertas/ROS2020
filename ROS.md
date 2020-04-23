@@ -1,6 +1,6 @@
 # ROS
 
-## Sesion 1
+## Session 1
 
 ### Virtual Box Installation guide:
 
@@ -24,21 +24,20 @@ Now Run your new Ubuntu Virtual Box machine and install the ROS system following
 
 * [ROS Overview](http://wiki.ros.org/ROS/Introduction)
 
-# Creating your first project
+### Creating your first project
 * [Create your first Package](http://wiki.ros.org/ROS/Tutorials/CreatingPackage)
 * [Building your first Package](http://wiki.ros.org/ROS/Tutorials/BuildingPackages)
 
 
 
-# GAZEBO
+### GAZEBO
 * [Install Gazebo 7.x and Integration with ROS using gazebo_ros_pkgs ROS-Kinetic pre-builts  ](http://gazebosim.org/tutorials?tut=ros_installing&cat=connect_ros)
 * [Install dependent ROS packages for TurtleBot](http://emanual.robotis.com/docs/en/platform/turtlebot3/pc_setup/#install-dependent-ros-1-packages)
 
 
-## Sesion 2
+## Session 2
 
-# ROBOTS
-
+### ROBOTS
 * [Turtlebot3 burger simulation using gazebo](http://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/)
 * [URDF robot examples](https://wiki.ros.org/urdf/Examples)
 
