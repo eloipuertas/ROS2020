@@ -39,7 +39,65 @@ Now Run your new Ubuntu Virtual Box machine and install the ROS system following
 
 ### ROBOTS
 * [Turtlebot3 burger simulation using gazebo](http://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/)
-* [URDF robot examples](https://wiki.ros.org/urdf/Examples)
+* [URDF robot examples](https://wiki.ros.org/urdf/
+
+## Session 3
+
+### Quick Overview of Graph Concepts
+* Nodes: A node is an executable that uses ROS to communicate with other nodes.
+
+* Messages: ROS data type used when subscribing or publishing to a topic.
+
+* Topics: Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+
+* Master: Name service for ROS (i.e. helps nodes find each other)
+
+* rosout: ROS equivalent of stdout/stderr
+
+* roscore: Master + rosout + parameter server (parameter server will be introduced later)
+
+### Using rosnode
+Launch Gazebo with the turtleboot in an empty world. 
+
+```
+   $ export TURTLEBOT3_MODEL=burger
+   $ roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch
+```
+
+Open up a new terminal, and let's use rosnode to see what is running ... Bear in mind to keep the previous terminal open either by opening a new tab or simply minimizing it.
+Rosnode displays information about the ROS nodes that are currently running. The rosnode list command lists these active nodes:
+
+```
+$ rosnode list
+```
+
+The `rosnode info` command returns information about a specific node.
+
+```
+$  rosnode info /
+```
+
+Let's use another rosnode command, ping, to test that it's up:
+
+```
+$ rosnode ping my_turtle
+```
+
+### Understanding ROS Topics
+
+### Creating Msg and Srv
+http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv
+
+### Writing Publisher and Subscriber (Python)
+http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
+
+### Writing a Simple Service and Client (Python)
+http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29
+
+### Exercise
+
+
+
 
 
 
