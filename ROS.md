@@ -201,17 +201,19 @@ We can also look at what is happening in rqt_graph. Press the refresh button in 
 * Check the Publications and Subscriptions of your robot and the type of messages it returns.
 * All the information about the turtlebot topics:
 [Turtlebot3](http://wiki.ros.org/turtlebot3_example)
-* How to read laserscan-data(https://www.theconstructsim.com/read-laserscan-data/)
-* If you have troubles using your virtual machine, you can use this robot platform in the cloud [ros-development-studio](https://www.theconstructsim.com/rds-ros-development-studio/). Free until 8h per day.
+* [How to read laserscan-data](https://www.theconstructsim.com/read-laserscan-data/)
+* If you have troubles using your virtual machine, you can use this robot platform in the cloud [ros-development-studio](https://www.theconstructsim.com/rds-ros-development-studio/). Free up to 8h per day.
+* The construct. Every Tuesday @ 6 PM CET Live Class. [28 April. Finally understand ROS subscrivers](https://theconstructsim.us12.list-manage.com/track/click?u=3d07cceeeb3e64e1676c8971f&id=96badbd484&e=4889793259)
+* All The construct [youtube videos](https://www.youtube.com/channel/UCt6Lag-vv25fTX3e11mVY1Q/videos)
 
 # Schedule
 
 |  Date |  Lesson |   Goal|   
 |--- | --- | ---|
 |  14/04/2020 | Introduction to ROS  | Install ROS and Gazebo
-|  21/04/2020|  Using Turtlebot with Gazebo|  Follow the tutorial about Turtle Bot simulation using gazebo.  
-|  28/04/2020 | Publisher and Subscribers | Create 1st project in ROS   
-|  5/05/2020  | OpenCV and ROS| Project ROS using OpenCV   
-|  12/04/2020 | SLAM and ROS| Project ROS using SLAM   
+|  21/04/2020 |  Using Turtlebot with Gazebo|  Follow the tutorial about Turtle Bot simulation using gazebo.  
+|  28/04/2020 | Publisher and Subscribers | Create 1st project in ROS     
+|  05/04/2020 | SLAM and ROS| Project ROS using SLAM  
+|  12/05/2020 | OpenCV and ROS| Project ROS using OpenCV 
 |  19/04/2020 | Exiting the Maze | Exiting Maze Final Project  
 |  26/04/2020 | Final Project Presentation | Final Project Presentation
