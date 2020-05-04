@@ -1,6 +1,6 @@
 <a name="top"></a>
 # ROS Course
-[Session 1](#Session1) | [Session 2](#Session2) | [Session 3](#Session3) | [Session 4](#Session4) | [Schedule](#Schedule)
+[Session 1](#Session1) | [Session 2](#Session2) | [Session 3](#Session3) | [Session 4](#Session4) | [Schedule](#Schedule)
 
 
 <a name="Session1"></a>
