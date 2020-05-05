@@ -40,6 +40,18 @@ Now Run your new Ubuntu Virtual Box machine and install the ROS system following
 ### Ros Development Studio cloud platform.
 If you have any trouble using the virtual machine in your computer, you can use this robotic platform in the cloud [ros-development-studio](https://www.theconstructsim.com/rds-ros-development-studio/). Free use up to 8h per day.
 
+### Edit your bash to simplify your RUN
+```
+   $ gedit ~/.bashrc
+```
+Then go to final file and add these lines:
+```
+   source /opt/ros/kinetic/setup.bash
+   source ~/catkin_ws/devel/setup.bash
+   export TURTLEBOT3_MODEL=burger
+```
+And save it. Finally reopen your shell.
+
 <a name="Session2"></a>
 ## Session 2
 
@@ -230,7 +242,9 @@ The navigation stack uses the geometry_msgs/Twist messages to control the veloci
 
 
 ### Steps for navigating
-To navigate the environment, TurtleBot needs a map, a localization module, anda path planning module. TurtleBot can safely and autonomously navigate theenvironment if the map completely and accurately defines the environment.
+To navigate the environment, TurtleBot needs a map, a localization module, and
+a path planning module. TurtleBot can safely and autonomously navigate the
+environment if the map completely and accurately defines the environment.
 
 1. Generate a map using [gmapping](http://wiki.ros.org/gmapping/) from ladar data. Remember the execution procedure was:
 	* Launch Gazebo
@@ -239,24 +253,45 @@ To navigate the environment, TurtleBot needs a map, a localization module, anda
 	* Move the robot arround
 	* Save the Map
 		`rosrun map_server map_saver -f ~/map ` 
-	* Before we begin with the steps for autonomous navigation, check the location ofyour .yaml and .pgm map files created.
+	* Before we begin with the steps for autonomous navigation, check the location of
+your .yaml and .pgm map files created.
 
 2. Estimate Initial Pose.
 	* Once you have the map, launch the navigation stack in the turtlebot: `roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml`
-	If you check the rviz windows, you can notice that TurtleBot does not know itscurrent location on the map. It needs a little help. Let TurtleBot know this location by performing the following steps:
-		*  Click on the 2D Pose Estimate button on the tool toolbar at the top of the rizmain screen.		* Click on the location on the map in the gazebo simulator where TurtleBot is located and drag themouse in the direction TurtleBot is facing in Rviz aplication.
-	* **Amcl** is a probabilistic localization system for a robot moving in 2D. It implements the adaptive (or KLD-sampling) Monte Carlo localization approach (as described by Dieter Fox), which uses a particle filter to track the pose of a robot against a known map. The amcl algorithm works to figure out where the robot would need tobe on the map in order for its laser scans to make sense. Each possible locationis represented by a particle. Particles with laser scans that do not match well areremoved, resulting in a group of particles representing the location of the robotin the map. The amcl node uses the particle positions to compute and publish thetransform from map to base_link. You can know where is your robot subscribing the topic `amcl_pose` 
+	If you check the rviz windows, you can notice that TurtleBot does not know its
+current location on the map. It needs a little help. Let TurtleBot know this location by performing the following steps:
+		*  Click on the 2D Pose Estimate button on the tool toolbar at the top of the riz
+main screen.
+		* Click on the location on the map in the gazebo simulator where TurtleBot is located and drag the
+mouse in the direction TurtleBot is facing in Rviz aplication.
+	* **Amcl** is a probabilistic localization system for a robot moving in 2D. It implements the adaptive (or KLD-sampling) Monte Carlo localization approach (as described by Dieter Fox), which uses a particle filter to track the pose of a robot against a known map. The amcl algorithm works to figure out where the robot would need to
+be on the map in order for its laser scans to make sense. Each possible location
+is represented by a particle. Particles with laser scans that do not match well are
+removed, resulting in a group of particles representing the location of the robot
+in the map. The amcl node uses the particle positions to compute and publish the
+transform from map to base_link. You can know where is your robot subscribing the topic `amcl_pose` 
 ```rostopic echo /amcl_pose```
 [http://wiki.ros.org/amcl](http://wiki.ros.org/amcl)
 
 3. Send Navigation Goal. 
-	* Next, we can command TurtleBot to a new location and orientation in the room byidentifying a goal using Rviz:		* Click on the 2D Nav Goal button on the tool toolbar at the top of themain screen.		* Click on the location on the map where you want TurtleBot to go and drag the mouse in the direction TurtleBot should be facing when it is finished.
+	* Next, we can command TurtleBot to a new location and orientation in the room by
+identifying a goal using Rviz:
+		* Click on the 2D Nav Goal button on the tool toolbar at the top of the
+main screen.
+		* Click on the location on the map where you want TurtleBot to go and drag the mouse in the direction TurtleBot should be facing when it is finished.
 	* Alternatively you can do it programatically, using the `actionlib package`, creating a `SimpleActionClient` of a `move_base` action type and wait for server. The ROS navigation stack is based on ROS Action,  indeed Actions are the best choice for cases when a node wants to send a request to another node and will receive a response after a relatively long time. To avoid leaving the user wondering what’s happening and if all is going as desired, Actions implement a feedback mechanism, which let the user receive information every now and then. Actions are Client-Server-based: the actionlib library provides the tools and interface to set up an Action Server to execute the requested goals sent by the Client. The main elements of an action mechanisms are: goal, result, and feedback. Each one of them is specified by a ROS Message type, contained in an action definition file, with “.action” extension.
 	* The **move\_base**  node implements a `SimpleActionServer`, an action server with a single goal policy, taking in goals of `geometry_msgs/PoseStamped` message type. To communicate with this node, the `SimpleActionClient` interface is used. The `move_base` node tries to achieve a desired pose by combining a global and a local motion planners to accomplish a navigation task which includes obstacle avoidance:
-		* Global planner: These processes perform path planning for a robot to reach agoal on the map.
-		* Local planner: These processes perform path planning for a robot to create pathsto nearby locations on a map and avoid obstacles.
-		* Global costmap: This costmap keeps information for global navigation. Globalcostmap parameters control the global navigation behavior. These parameters arestored in global\_costmap\_params.yaml. Parameters common to global and localcostmaps are stored in costmap\_common\_params.yaml.
-		* Local costmap: This costmap keeps information for local navigation. Localcostmap parameters control the local navigation behavior and are stored inlocal\_costmap\_params.yaml.
+		* Global planner: These processes perform path planning for a robot to reach a
+goal on the map.
+		* Local planner: These processes perform path planning for a robot to create paths
+to nearby locations on a map and avoid obstacles.
+		* Global costmap: This costmap keeps information for global navigation. Global
+costmap parameters control the global navigation behavior. These parameters are
+stored in global\_costmap\_params.yaml. Parameters common to global and local
+costmaps are stored in costmap\_common\_params.yaml.
+		* Local costmap: This costmap keeps information for local navigation. Local
+costmap parameters control the local navigation behavior and are stored in
+local\_costmap\_params.yaml.
 	[http://wiki.ros.org/move_base](http://wiki.ros.org/move_base)
 
 
