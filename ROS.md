@@ -52,6 +52,26 @@ Then go to final file and add these lines:
 ```
 And save it. Finally reopen your shell.
 
+### ROS DEVELOPMENT STUDIO
+If you use ros development studio you can follow this tutorial.  
+1. Create your project
+2. Open a shell:
+```
+   $ cd ~/catkin_ws/src/
+```
+3. Do these repositories clones:
+```
+   git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+   git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+   git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+```
+4. Build
+```
+cd ~/catkin_ws && catkin_make
+```
+Warning!! For every time that you open a new shell you must write: export TURTLEBOT3_MODEL=burger
+You can edit shell with vim because in ROS online not has gedit.
+
 <a name="Session2"></a>
 ## Session 2
 
