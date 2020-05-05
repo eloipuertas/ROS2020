@@ -69,8 +69,8 @@ If you use ros development studio you can follow this tutorial.
 ```
 cd ~/catkin_ws && catkin_make
 ```
-Warning!! For every time that you open a new shell you must write: export TURTLEBOT3_MODEL=burger
-You can edit shell with vim because in ROS online not has gedit.
+Warning!! For every time that you open a new shell you must write: export TURTLEBOT3_MODEL=burger  
+You can edit shell with vim because in ROS online not has gedit.  
 
 <a name="Session2"></a>
 ## Session 2
