@@ -63,7 +63,7 @@ If you use ros development studio you can follow this tutorial.
 ```
    git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
    git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
-   git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+   git clone -b kinetic-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
 ```
 4. Build
 ```
