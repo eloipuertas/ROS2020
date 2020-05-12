@@ -1,6 +1,6 @@
 <a name="top"></a>
 # ROS Course
-[Session 1](#Session1) | [Session 2](#Session2) | [Session 3](#Session3) | [Session 4](#Session4) | [Schedule](#Schedule)
+[Session 1](#Session1) | [Session 2](#Session2) | [Session 3](#Session3) | [Session 4](#Session4) | [Session 5](#Session5) | [Schedule](#Schedule)
 
 
 <a name="Session1"></a>
@@ -51,32 +51,41 @@ Then go to final file and add these lines:
    export TURTLEBOT3_MODEL=burger
 ```
 And save it. Finally reopen your shell.
-
-### ROS DEVELOPMENT STUDIO
-If you use ros development studio you can follow this tutorial.  
-1. Create your project
-2. Open a shell:
-```
-   $ cd ~/catkin_ws/src/
-```
-3. Do these repositories clones:
-```
-   git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
-   git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
-   git clone -b kinetic-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
-```
-4. Build
-```
-cd ~/catkin_ws && catkin_make
-```
 Warning!! For every time that you open a new shell you must write: export TURTLEBOT3_MODEL=burger  
 You can edit shell with vim because in ROS online not has gedit.  
+
+
 
 <a name="Session2"></a>
 ## Session 2
 
 ### Runing Turtlebo3 in gazebo
 * [Install dependent ROS packages for TurtleBot](http://emanual.robotis.com/docs/en/platform/turtlebot3/pc_setup/#install-dependent-ros-1-packages)
+
+* If you are using ros development studio you can follow this tutorial.  
+
+	* Create your project
+
+	* Open a shell:
+	
+	```
+   		$ cd ~/catkin_ws/src/
+	```
+	
+	* Do these repositories clones:
+
+	```
+	   git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+	   git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+	   git clone -b kinetic-devel https://github.com/ROBOTIS-GIT/turtlebot3.git
+	```
+	* Build
+
+	```
+	cd ~/catkin_ws && catkin_make
+	```
+
+
 * [Turtlebot3 simulation using gazebo](http://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/) Use `export TURTLEBOT3_MODEL=burger` as tutlebot model.
 * [URDF robot examples](https://wiki.ros.org/urdf/)
 
@@ -319,7 +328,10 @@ local\_costmap\_params.yaml.
 ### Exercise 
 
 * Load the house scenario. 
-* Generate the house mapping using multiple robots if you want as explained in the [robotis emanual](http://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/#virtual-slam-by-multiple-turtlebot3s) from [session 2](#Session2).
+* Generate the house mapping either 
+	* using multiple robots as explained in the [robotis emanual](http://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/#virtual-slam-by-multiple-turtlebot3s) from [session 2](#Session2) or
+	* autonomously doing random walks implimenting your own behaviour reading the sensor data or 
+	* autonomously doing SLAM with frontier exploration (`$ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=frontier_exploration`).
 * Locate the initial position of the robot using Rviz and find the coordinates for the mailbox situated outside of the house. Set as a goal the mailbox door and navigate to there using an actionlib client write in python.  
 
 ### Tips and helps
@@ -329,6 +341,128 @@ local\_costmap\_params.yaml.
 * [Sending Goals to the Navigation Stack](https://hotblackrobotics.github.io/en/blog/2018/01/29/action-client-py/)
 
 <a name="Schedule"></a>
+
+## Session 5
+### Robotic vision with OpenCV
+	
+For this exercise we gona use turtlebot3 model "waffle". Waffle uses a depth and rgb Intel® RealSense™ R200 camera.
+First of all run the gazebo house simulation with turtlebot3 'waffle' model:
+
+```
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_gazebo turtlebot3_house.launch
+``` 
+
+### Seting up your environment:
+
+* Using VirtualBox:
+	* Check your gazebo version `gazebo -version` if it is lower than 7.5.0, update it with: `apt-get upgrade gazebo7` 
+	* Execute Rviz
+		* Open a new Terminal
+		* Execute `rviz` 	
+* Using ROS Development Studio
+	* Execute **Rviz**:
+		* Open a new Shell
+		* Execute `rviz`
+		* Go to Tools and open the Graphical Tool
+		* Press link resize opened app
+		
+
+### Using Rviz to watch the camera
+Once inside the Rviz application:
+
+* Go to `Fixed Frame` in `Global Options` and set `base_footprint`option in the combo box.
+* Press button `Add` and choose `by topic` : `/camera` `/rgb` `/image_raw`  and select `Image` `raw` and press `OK`.
+* Now you should see and image from the camera in a bottom window.
+
+### Changing the world using Gazebo world editor
+In RDS you can add boxes, circles or cylinders in your scenario using gazebo just drag them from the.
+
+If you are using gazebo in VirtualBox you can add much more elements just going to the Insert menu and choosing any of the elements from the list. 
+
+
+### Using OpenCV in python for image processing
+We are going to use the popular [OpenCV](https://opencv.org/) library with the data received from the camera. 
+
+
+**Subscribing to camera**
+
+The topic for the Subscriber is `"/camera/rgb/image_raw"` and the type of missatge is a `sensor_msgs.msg.Image`
+
+**Using OpenCV in the callback**
+
+In the callback function for the camera we are going to use the CvBridge() object that brings all the methods from openCV ([cv_bridge](http://wiki.ros.org/cv_bridge))
+
+* The imports should be like this:
+
+```python
+#!/usr/bin/env python
+
+import rospy
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
+import cv2
+import numpy as np
+```
+**Capturing an image from the camera**
+We gonna create a class for encapsuling the attributes and callback function:
+
+```python
+class TakeAShot(object):
+
+ def __init__(self):
+        self.image_sub = rospy.Subscriber("/camera/rgb/image_raw", Image, self.camera_callback)
+        self.bridge_object = CvBridge()
+```
+The callback function will recieve the Image object from the camera in a missage and then it will save the Image as a png file in your 
+
+```python
+ def camera_callback(self,data):
+      try:
+           # We select bgr8 because its the OpenCV encoding by default
+           cv_image = self.bridge_object.imgmsg_to_cv2(data, desired_encoding="bgr8")
+           cv2.imwrite("image.png", cv_image)
+      except CvBridgeError as e:
+           print(e)        
+```     		
+The main is as usual:
+
+```python
+def main():
+
+    rospy.init_node('take_a_shot', anonymous=True)
+    take_a_shot = TakeAShot()
+    try:
+        rospy.spin()
+    except KeyboardInterrupt:
+        print("Shutting down")
+
+if __name__ == '__main__':
+    main()
+```
+
+
+### Exercise
+
+* Load the house scenario with a "waffle" turtlebot.
+* Add either a cube or a ball in one of the rooms in the house.
+* Start the navigation stack. 
+* Set a square goal coordinates in one room and set a circle goal coordinates in another room using Rviz.
+* Write a Python node with the folowing behaviour:
+	* Go to the room where there is the object (cube or ball).
+	* When the robot stops:
+		* take an image. 
+		* recognize the object using image processing by coulour and shape. 
+		* goes to square goal or circle goal depending on the object recognized.
+
+### Tips and helps
+
+* [Sending a sequence of Goals to ROS NavStack with Python](https://hotblackrobotics.github.io/en/blog/2018/01/29/seq-goals-py/)
+* [Shape Detection](https://www.pyimagesearch.com/2016/02/08/opencv-shape-detection/)
+* [Color Detection using HSV space](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
+* [HSV color picker (in opencv H value goes from 0 to 179)](https://alloyui.com/examples/color-picker/hsv.html)
+* [The Construct Live Class How to Use OpenCV](https://www.youtube.com/watch?v=0C0gOsLoP9k)
+
 # Schedule
 
 |  Date |  Lesson |   Goal|   
