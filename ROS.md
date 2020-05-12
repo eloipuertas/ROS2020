@@ -340,8 +340,8 @@ local\_costmap\_params.yaml.
 * [ROS Robotics by example](http://dl.booktolearn.com/ebooks2/engineering/robotics/9781782175193_ros_robotics_by_example_8f38.pdf)
 * [Sending Goals to the Navigation Stack](https://hotblackrobotics.github.io/en/blog/2018/01/29/action-client-py/)
 
-<a name="Schedule"></a>
 
+<a name="Session5"></a>
 ## Session 5
 ### Robotic vision with OpenCV
 	
@@ -463,6 +463,7 @@ if __name__ == '__main__':
 * [HSV color picker (in opencv H value goes from 0 to 179)](https://alloyui.com/examples/color-picker/hsv.html)
 * [The Construct Live Class How to Use OpenCV](https://www.youtube.com/watch?v=0C0gOsLoP9k)
 
+<a name="Schedule"></a>
 # Schedule
 
 |  Date |  Lesson |   Goal|   
