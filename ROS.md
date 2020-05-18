@@ -489,7 +489,7 @@ Exiting the Maze is a classical robotics and Artificial Intelligence problem. We
  
 * A variation of the wall follower is the **Pledge algorithm**, which can be used for not simply connected mazes. The Pledge algorithm, designed to circumvent obstacles, requires an arbitrarily chosen direction to go toward, which will be preferential. When an obstacle is met, one hand (say the right hand) is kept along the obstacle while the angles turned are counted (clockwise turn is positive, counter-clockwise turn is negative). When the solver is facing the original preferential direction again, and the angular sum of the turns made is 0, the solver leaves the obstacle and continues moving in its original direction.
 
-* If you have knowledge of the map, and the a maze has multiple solutions, the solver may want to find the shortest path from start to finish. There are several algorithms to find shortest paths: **[breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)**, **[A* algorithm](A* search algorithm)**. 
+* If you have knowledge of the map, and the a maze has multiple solutions, the solver may want to find the shortest path from start to finish. There are several algorithms to find shortest paths: **[breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)**, **[A* algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)**. 
 
 ### Setting up your own project
 
@@ -523,15 +523,21 @@ Select one of the next projects to do:
 
 |  Name |  Methods |  Minimum Scoring| Max Scoring
 |--- | --- | ---| ---|
-| Exiting the Maze  | Using the Navigator System with frontier exploration|  6  | 8 |
-| Exiting the Maze  | Using a wall follower | 7 | 9 |
-| Exiting the Maze | Using a customized A* or BFS algorithm to find the best solution| 9| 10
-| Exiting the Maze | Using Image Processing to find the best solution | 9 |10
+| Exiting the Maze  | Setting up and using the Navigator System with frontier exploration|  6  | 8 |
+| Exiting the Maze | Using a wall follower without the Navigator System| 7 | 9 |
+| Exiting the Maze | Using Image Processing to find solution without the Navigator System| 9 |10
+| Exiting the Maze | Using a A* or BFS algorithm to find the best solution without the Navigator System| 9| 10
 | Gymkhana for Robots| Create a set of trials in a customized scenario using the Navigator System. | 6 | 8
 | Free theme project | Create your own project chosing any world, containing any kind of navigation and image processsing | 5 | 10 
 
-#### Presentations
-* Presentation must be done online at 26th April from 17h to 19h. (*) 
+#### Tips and tricks
+* [Creating a ROS Gazebo Maze simulation for Turtlebo3 using an existing simulation video tutorial](https://www.youtube.com/watch?v=J_vasKVhUQM)
+* [Wall follower tips from MIT racercar 2019 Montreal](https://mit-racecar.github.io/icra2019-workshop/lab-wall-follow-sim)
+* [Creating a launch file for the navigation stack](http://wiki.ros.org/navigation/Tutorials/RobotSetup#Creating_a_Launch_File_for_the_Navigation_Stack)
+* [Creating plugins for the Navigation System (C++)](http://wiki.ros.org/nav_core)
+
+#### Project Demostration
+* Demostration must be done online at 26th April from 17h to 19h. (*) 
 * You will have 10 minuts maximum. 
 * You only need to say your full Name, stay close to camera and show any valid ID card to camera and then share your screen and talk over. No PPT or suplementary material is needed.
 * You must show that the robot is performing well by changing dynamically one or more of the elements cited above and restarting the robot.
@@ -557,6 +563,6 @@ Select one of the next projects to do:
 |  05/04/2020 | SLAM and ROS| Project ROS using SLAM  
 |  12/05/2020 | OpenCV and ROS| Project ROS using OpenCV 
 |  19/04/2020 | Exiting the Maze | Exiting Maze | Final Project  
-|  26/04/2020 | Final Project Presentation | Final Project Presentation
+|  26/04/2020 | Final Project Demostration | Final  Demostration
 
 [Go to Top](#top)
