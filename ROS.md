@@ -1,6 +1,6 @@
 <a name="top"></a>
 # ROS Course
-[Session 1](#Session1) | [Session 2](#Session2) | [Session 3](#Session3) | [Session 4](#Session4) | [Session 5](#Session5) | [Schedule](#Schedule)
+[Session 1](#Session1) | [Session 2](#Session2) | [Session 3](#Session3) | [Session 4](#Session4) | [Session 5](#Session5) | [Session 6](#Session6) | [Schedule](#Schedule)
 
 
 <a name="Session1"></a>
@@ -463,6 +463,89 @@ if __name__ == '__main__':
 * [HSV color picker (in opencv H value goes from 0 to 179)](https://alloyui.com/examples/color-picker/hsv.html)
 * [The Construct Live Class How to Use OpenCV](https://www.youtube.com/watch?v=0C0gOsLoP9k)
 
+<a name="Session6"></a>
+## Session 6
+### Exiting the Maze.
+Exiting the Maze is a classical robotics and Artificial Intelligence problem. We can decompose the problem in this two variables:
+
+* How many solutions it has? 
+	* One.
+	* More than One. 	
+* Are the map and the goal known?
+	* Yes. 
+	* No.
+
+[Algorithms for exiting the maze: ](https://en.wikipedia.org/wiki/Maze_solving_algorithm)
+
+* **Wall Follower**. The map is not known and it is simply connected and there exist one solution without loops. In this case if you follow the wall you reach the exit. (From a Topological point of view, if the walls are connected, then they may be deformed into a loop or circle, so if you follow the line at the end you get the exit. 
+* If you have the map of the simpyly connected maze ([maze generator](http://www.mazegenerator.net/)), you can apply **simple image processing morfological operations** to find the [path between the two points](http://opencv-tutorials-hub.blogspot.com/2016/04/how-to-solve-maze-in-opencv.html) 
+	1. Load the Source Image.
+	2. Convert the given image into binary image.
+	3. Extract Counters from it.
+	Now the External Counter for a perfect maze is 2(because the perfect maze has only 2 walls). So if the given Maze is perfect,it would have 2 External Counters.
+	4. So select any one wall, and dilate and erode the ways by the same amount of pixels.
+	5. Subtract the eroded image from the dilated image to get the final output i.e the solution of the maze.
+	 	
+ 
+* A variation of the wall follower is the **Pledge algorithm**, which can be used for not simply connected mazes. The Pledge algorithm, designed to circumvent obstacles, requires an arbitrarily chosen direction to go toward, which will be preferential. When an obstacle is met, one hand (say the right hand) is kept along the obstacle while the angles turned are counted (clockwise turn is positive, counter-clockwise turn is negative). When the solver is facing the original preferential direction again, and the angular sum of the turns made is 0, the solver leaves the obstacle and continues moving in its original direction.
+
+* If you have knowledge of the map, and the a maze has multiple solutions, the solver may want to find the shortest path from start to finish. There are several algorithms to find shortest paths: **[breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)**, **[A* algorithm](A* search algorithm)**. 
+
+### Setting up your own project
+
+* [How to create your own gazebo world and launch file] (http://gazebosim.org/tutorials?tut=ros_roslaunch)
+* [How to create a launch file with all the nodes] (http://www.clearpathrobotics.com/assets/guides/kinetic/ros/Launch%20Files.html)
+	* If you have already a launch file, update it with the rest of nodes you need to execute. 
+
+### Projects:
+
+
+* Your Project must to be run using a single launch file. 
+
+* You have to submit your code in a zip file in the `Campus Virtual` Final Project task.
+
+* Your scenario must be customized by you. You can edit your own building in the **building editor** using gazebo, go to `Edit` menu and open the `Building Editor`. In RDS you can dowload any maze created by you from the web (you can post it in your `github` account and download it using the `curl` tool: `curl http://some.url --output some.file`
+
+* Your project should work perfectly setting any of the following elements:
+	* Robot initial position
+	* Type of object (cube or sphere)
+	* Object positions 
+	* Wall positions of the world
+
+
+Select one of the next projects to do:
+	
+1. Exiting the maze. Starting from one point of the maze reach the end, take a photo of the object at the end (cube or sphere) and recognize it. You have an example of maze at `roslaunch turtlebot3_gazebo turtlebot3_stage_4.launch`. 
+2. Gymkhana for Robots. Create a set of trials (between 3 and 5) similar to those in Session 5 Exercise (Go to some point and choose a path according to image processing object recognition) in a customized scenario.
+3. Free theme project. Create your own project chosing any world, containing any kind of navigation and image processsing. Free theme project score will be depening on the dificulty of the project (easy 5 to very difficult/large project 10)
+
+
+
+|  Name |  Methods |  Minimum Scoring| Max Scoring
+|--- | --- | ---| ---|
+| Exiting the Maze  | Using the Navigator System with frontier exploration|  6  | 8 |
+| Exiting the Maze  | Using a wall follower | 7 | 9 |
+| Exiting the Maze | Using a customized A* or BFS algorithm to find the best solution| 9| 10
+| Exiting the Maze | Using Image Processing to find the best solution | 9 |10
+| Gymkhana for Robots| Create a set of trials in a customized scenario using the Navigator System. | 6 | 8
+| Free theme project | Create your own project chosing any world, containing any kind of navigation and image processsing | 5 | 10 
+
+#### Presentations
+* Presentation must be done online at 26th April from 17h to 19h. (*) 
+* You will have 10 minuts maximum. 
+* You only need to say your full Name, stay close to camera and show any valid ID card to camera and then share your screen and talk over. No PPT or suplementary material is needed.
+* You must show that the robot is performing well by changing dynamically one or more of the elements cited above and restarting the robot.
+* At any time I can tell you to move some part of the scenario or the robot manually.
+
+(*)  If you have any of the next problems talk to me in advance for arranging your presentation:
+
+* Your bandwith it's not enough for an online demonstration. Then you can send me a video instead of an online presentation. You must follow all the previously indications. You have to proof that your robot can adapt to changes in the world. I can ask you to make another video if I have any doubts.
+* You have not enough time to do the project in one week. Then we can resheduling a second presentation slot for the next week substracting one point to your final score (Maximum 2nd June)
+
+#### Grading Notes: 
+* Difference between minimum and maximun scoring is basically if you customized your maze or add some extra feature in the task. 
+* You can earn one extra point if you manage to do a stunning presentation. 
+
 <a name="Schedule"></a>
 # Schedule
 
@@ -473,7 +556,7 @@ if __name__ == '__main__':
 |  28/04/2020 | Publisher and Subscribers | Create 1st project in ROS     
 |  05/04/2020 | SLAM and ROS| Project ROS using SLAM  
 |  12/05/2020 | OpenCV and ROS| Project ROS using OpenCV 
-|  19/04/2020 | Exiting the Maze | Exiting Maze Final Project  
+|  19/04/2020 | Exiting the Maze | Exiting Maze | Final Project  
 |  26/04/2020 | Final Project Presentation | Final Project Presentation
 
 [Go to Top](#top)
