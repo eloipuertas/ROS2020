@@ -523,11 +523,11 @@ Select one of the next projects to do:
 
 |  Name |  Methods |  Minimum Scoring| Max Scoring
 |--- | --- | ---| ---|
-| Exiting the Maze  | Setting up and using the Navigator System with frontier exploration|  6  | 8 |
-| Exiting the Maze | Using a wall follower without the Navigator System| 7 | 9 |
-| Exiting the Maze | Using Image Processing to find solution without the Navigator System| 9 |10
-| Exiting the Maze | Using a A* or BFS algorithm to find the best solution without the Navigator System| 9| 10
-| Gymkhana for Robots| Create a set of trials in a customized scenario using the Navigator System. | 6 | 8
+| Exiting the Maze  | Setting up and **using the Navigator System** with frontier exploration|  6  | 8 |
+| Exiting the Maze | Using a wall follower **without the Navigator System**| 7 | 9 |
+| Exiting the Maze | Using Image Processing to find the solution **without the Navigator System**| 8 | 9
+| Exiting the Maze | Using a A* or BFS algorithm to find the best solution **without the Navigator System**| 9| 10
+| Gymkhana for Robots| Create a set of trials in a customized scenario **using the Navigator System**. | 6 | 8
 | Free theme project | Create your own project chosing any world, containing any kind of navigation and image processsing | 5 | 10 
 
 #### Tips and tricks
